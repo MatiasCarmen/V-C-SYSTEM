@@ -4,13 +4,14 @@
  */
 package com.vcsystems.modelo.dao;
 
-import com.vcsystems.modelo.entidades.Proveedor;
+
+import com.vcsystems.modelo.entidades.DiccionarioFallas;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import util.Conexion;
 
-public class ProveedorDAO {
+public class DiccionarioFallasDAO {
 
     Conexion cn = new Conexion();
     Connection con;
@@ -18,21 +19,20 @@ public class ProveedorDAO {
     ResultSet rs;
     int r;
 
-   
-    public List<Proveedor> listar() {
-        List<Proveedor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM proveedores";
+
+    public List<DiccionarioFallas> listar() {
+        List<DiccionarioFallas> lista = new ArrayList<>();
+        String sql = "SELECT * FROM diccionario_fallas";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Proveedor p = new Proveedor();
-                p.setId_proveedor(rs.getLong("id_proveedor"));
-                p.setNombre_empresa(rs.getString("nombre_empresa"));
-                p.setTelefono(rs.getLong("telefono"));
-                p.setCorreo(rs.getString("correo"));
-                lista.add(p);
+                DiccionarioFallas df = new DiccionarioFallas();
+                df.setId_falla(rs.getLong("id_falla"));
+                df.setCodigo_falla(rs.getLong("codigo_falla"));
+                df.setDescripcion(rs.getString("descripcion"));
+                lista.add(df);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,36 +40,34 @@ public class ProveedorDAO {
         return lista;
     }
 
-    
-    public Proveedor buscarPorId(Long id) {
-        Proveedor p = new Proveedor();
-        String sql = "SELECT * FROM proveedores WHERE id_proveedor = ?";
+
+    public DiccionarioFallas buscarPorId(Long id) {
+        DiccionarioFallas df = new DiccionarioFallas();
+        String sql = "SELECT * FROM diccionario_fallas WHERE id_falla = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.setLong(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                p.setId_proveedor(rs.getLong("id_proveedor"));
-                p.setNombre_empresa(rs.getString("nombre_empresa"));
-                p.setTelefono(rs.getLong("telefono"));
-                p.setCorreo(rs.getString("correo"));
+                df.setId_falla(rs.getLong("id_falla"));
+                df.setCodigo_falla(rs.getLong("codigo_falla"));
+                df.setDescripcion(rs.getString("descripcion"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return p;
+        return df;
     }
 
-   
-    public int agregar(Proveedor p) {
-        String sql = "INSERT INTO proveedores (nombre_empresa, telefono, correo) VALUES (?, ?, ?)";
+  
+    public int agregar(DiccionarioFallas df) {
+        String sql = "INSERT INTO diccionario_fallas (codigo_falla, descripcion) VALUES (?, ?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1, p.getNombre_empresa());
-            ps.setLong(2, p.getTelefono());
-            ps.setString(3, p.getCorreo());
+            ps.setLong(1, df.getCodigo_falla());
+            ps.setString(2, df.getDescripcion());
             r = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,16 +75,15 @@ public class ProveedorDAO {
         return r;
     }
 
-
-    public int actualizar(Proveedor p) {
-        String sql = "UPDATE proveedores SET nombre_empresa = ?, telefono = ?, correo = ? WHERE id_proveedor = ?";
+ 
+    public int actualizar(DiccionarioFallas df) {
+        String sql = "UPDATE diccionario_fallas SET codigo_falla = ?, descripcion = ? WHERE id_falla = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1, p.getNombre_empresa());
-            ps.setLong(2, p.getTelefono());
-            ps.setString(3, p.getCorreo());
-            ps.setLong(4, p.getId_proveedor());
+            ps.setLong(1, df.getCodigo_falla());
+            ps.setString(2, df.getDescripcion());
+            ps.setLong(3, df.getId_falla());
             r = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,7 +93,7 @@ public class ProveedorDAO {
 
     
     public void eliminar(Long id) {
-        String sql = "DELETE FROM proveedores WHERE id_proveedor = ?";
+        String sql = "DELETE FROM diccionario_fallas WHERE id_falla = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
