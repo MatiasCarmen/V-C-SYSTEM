@@ -1,13 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.vcsystems.modelo.controlador;
 
-/**
- *
- * @author mathi
- */
+import com.vcsystems.modelo.dao.UsuarioDAO;
+import com.vcsystems.modelo.entidades.Usuario;
+import java.util.List;
+
 public class UsuarioControlador {
-    
+
+    private final UsuarioDAO usuarioDAO;
+
+    public UsuarioControlador() {
+        this.usuarioDAO = new UsuarioDAO();
+    }
+
+    // Listar todos los usuarios
+    public List<Usuario> listarUsuarios() {
+        return usuarioDAO.listar();
+    }
+
+    // Buscar usuario por ID
+    public Usuario buscarUsuarioPorId(Long id) {
+        return usuarioDAO.buscarPorId(id);
+    }
+
+    // Registrar nuevo usuario
+    public boolean registrarUsuario(Usuario usuario) {
+        int resultado = usuarioDAO.agregar(usuario);
+        return resultado > 0;
+    }
+
+    // Actualizar usuario existente
+    public boolean actualizarUsuario(Usuario usuario) {
+        int resultado = usuarioDAO.actualizar(usuario);
+        return resultado > 0;
+    }
+
+    // Eliminar usuario por ID
+    public void eliminarUsuario(Long id) {
+        usuarioDAO.eliminar(id);
+    }
 }
