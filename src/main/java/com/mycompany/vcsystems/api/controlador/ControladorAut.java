@@ -4,6 +4,7 @@ import com.mycompany.vcsystems.modelo.dto.RegisterRequest;
 import com.mycompany.vcsystems.modelo.entidades.Usuario;
 import com.mycompany.vcsystems.modelo.entidades.Usuario.Rol;
 import com.mycompany.vcsystems.modelo.service.UsuarioService;
+import com.mycompany.vcsystems.modelo.service.JwtUtil;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.Email;
@@ -46,23 +47,21 @@ public class ControladorAut {
 
                         Map<String, Object> usuario = new HashMap<>();
                         usuario.put("idUsuario", user.getIdUsuario());
-                        // Asumiendo que el nombre del usuario está en la entidad específica (Cliente, Tecnico...)
-                        // Si no, necesitarías obtenerlo. Por ahora, usamos el correo como placeholder si no hay nombre.
                         usuario.put("nombre", user.getNombre() != null ? user.getNombre() : user.getCorreo());
                         usuario.put("correo", user.getCorreo());
                         usuario.put("rol", user.getRol().toString());
                         response.put("usuario", usuario);
 
-                        // --- INICIO DE LA CORRECCIÓN ---
+                        // Generar token JWT
+                        String token = JwtUtil.generateToken(user.getIdUsuario(), user.getCorreo(), user.getRol().toString());
+                        response.put("token", token);
+
                         response.put("redirect", switch (user.getRol()) {
                             case GERENTE -> "/pages/gerente.html";
                             case TECNICO -> "/pages/tecnico.html";
                             case CLIENTE -> "/pages/cliente.html";
-                            // Se añade el caso default para cubrir todos los posibles valores del enum.
                             default -> throw new IllegalStateException("Rol de usuario no reconocido para redirección: " + user.getRol());
                         });
-                        // --- FIN DE LA CORRECCIÓN ---
-
                         return ResponseEntity.ok(response);
                     })
                     .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED)

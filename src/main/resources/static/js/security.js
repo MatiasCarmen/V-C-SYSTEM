@@ -29,12 +29,13 @@ class SecurityManager {
             const data = await response.json();
 
             if (response.ok && data.success && data.usuario) {
-                // No manejamos tokens, solo la info del usuario
+                // Guardar info del usuario
                 this.userInfo = data.usuario;
-
-                // Guardar en localStorage
                 localStorage.setItem('user_info', JSON.stringify(this.userInfo));
-
+                // Guardar el token si existe
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                }
                 this.hideLoading();
                 setTimeout(() => this.redirectByRole(), 1000);
                 return { success: true, data };
@@ -73,13 +74,17 @@ class SecurityManager {
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos timeout
 
         try {
+            // Obtener token si existe
+            const token = localStorage.getItem('token');
+            const headers = {
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': 'Bearer ' + token } : {}),
+                ...options.headers
+            };
             const response = await fetch(url, {
                 ...options,
                 signal: controller.signal,
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...options.headers // Permitir otras cabeceras manualmente
-                }
+                headers
             });
 
             clearTimeout(timeoutId);
