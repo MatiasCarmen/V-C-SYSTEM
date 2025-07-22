@@ -1,9 +1,11 @@
-### Registrar gerente con datos proporcionados
+
+
+### Registrar tecnico con datos proporcionados
 POST http://localhost:8081/api/auth/register/tecnico
 Content-Type: application/json
-
 {
-  "nombre": "Maria Juana",
-  "correo": "maria.Juana@vcsystems.com",
+  "nombre": "Mauricio Revilla",
+  "correo": "Maurico.Revilla@vcsystems.com",
   "contrasena": "Password123!"
 }
+
