@@ -1,42 +1,40 @@
 package com.mycompany.vcsystems.modelo.entidades;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "gerentes")
+@Table(name = "gerente")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Gerente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_gerente")
     private Long idGerente;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
     private Usuario usuario;
 
-    @Column(name = "area_asignada")
-    private String areaAsignada;
+    private String area;
+    private String telefono;
 
-    @Column(name = "nivel_acceso")
-    private String nivelAcceso;
-
-    @CreatedDate
-    @Column(name = "creado_at", updatable = false)
+    @Column(name = "creado_at", nullable = false, updatable = false)
     private LocalDateTime creadoAt;
 
-    @LastModifiedDate
-    @Column(name = "actualizado_at")
+    @Column(name = "actualizado_at", nullable = false)
     private LocalDateTime actualizadoAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.creadoAt = LocalDateTime.now();
+        this.actualizadoAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.actualizadoAt = LocalDateTime.now();
+    }
 }

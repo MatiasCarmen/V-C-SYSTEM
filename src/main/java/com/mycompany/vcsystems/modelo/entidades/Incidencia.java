@@ -42,6 +42,10 @@ public class Incidencia {
     @Column(name = "estado", nullable = false)
     private Estado estado;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "prioridad", nullable = false)
+    private Prioridad prioridad = Prioridad.MEDIA;
+
     @NotBlank
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
@@ -60,5 +64,11 @@ public class Incidencia {
         EN_PROCESO,
         RESUELTA,
         CERRADA
+    }
+
+    public enum Prioridad {
+        BAJA,
+        MEDIA,
+        ALTA
     }
 }

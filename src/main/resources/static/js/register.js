@@ -8,7 +8,7 @@ function setupRegisterClientForm() {
     const form = document.getElementById('registerClientForm');
     const submitBtn = document.getElementById('registerClientSubmitBtn');
 
-  
+
     if (!submitBtn.querySelector('.loading-spinner')) {
         const spinner = document.createElement('span');
         spinner.classList.add('spinner-border', 'spinner-border-sm', 'me-2', 'd-none', 'loading-spinner');
@@ -35,7 +35,7 @@ function setupRegisterClientForm() {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-   
+
         setRegisterLoading(true);
 
         try {
@@ -50,18 +50,18 @@ function setupRegisterClientForm() {
             if (response.ok) {
                 // Mostrar alerta de éxito más prominente
                 showSuccessAlert();
-                
+
                 // Limpiar formulario
                 form.reset();
-           
+
                 form.querySelectorAll('.form-control').forEach(field => {
                     field.classList.remove('is-valid', 'is-invalid');
                     const invalidFeedback = field.nextElementSibling;
-                     if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
-                         invalidFeedback.style.display = 'none';
-                     }
+                    if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
+                        invalidFeedback.style.display = 'none';
+                    }
                 });
-                
+
                 // Redirigir después de 3 segundos para que el usuario vea la alerta
                 setTimeout(() => {
                     window.location.href = 'login.html';
@@ -73,21 +73,21 @@ function setupRegisterClientForm() {
         } catch (error) {
             securityManager.showAlert('Error de red o inesperado al registrar cliente.', 'danger');
         } finally {
-           
+
             setRegisterLoading(false);
         }
     });
 
-    
-     form.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+
+    form.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
         field.addEventListener('blur', function() {
             validateRegisterField(this);
         });
-  
+
         if (field.type === 'email' || field.type === 'text') {
-             field.addEventListener('input', function() {
+            field.addEventListener('input', function() {
                 validateRegisterField(this);
-             });
+            });
         }
     });
 }
@@ -127,9 +127,9 @@ function validateRegisterField(field) {
     } else {
         field.classList.remove('is-valid');
         field.classList.add('is-invalid');
-         if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
-             invalidFeedback.style.display = 'block';
-         }
+        if (invalidFeedback && invalidFeedback.classList.contains('invalid-feedback')) {
+            invalidFeedback.style.display = 'block';
+        }
     }
 
     return isValid;
@@ -153,7 +153,7 @@ function setRegisterLoading(loading) {
 
 // Función para mostrar alerta de éxito prominente
 function showSuccessAlert() {
-    // Crear alerta de Bootstrap más prominente
+
     const alertContainer = document.createElement('div');
     alertContainer.className = 'alert alert-success alert-dismissible fade show position-fixed';
     alertContainer.style.cssText = `
@@ -167,7 +167,7 @@ function showSuccessAlert() {
         border: none;
         border-radius: 10px;
     `;
-    
+
     alertContainer.innerHTML = `
         <div class="d-flex align-items-center">
             <i class="fas fa-check-circle me-3" style="font-size: 1.5rem; color: #198754;"></i>
@@ -178,17 +178,17 @@ function showSuccessAlert() {
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     `;
-    
+
     // Agregar al body
     document.body.appendChild(alertContainer);
-    
+
     // Auto-remover después de 3 segundos
     setTimeout(() => {
         if (alertContainer.parentNode) {
             alertContainer.remove();
         }
     }, 3000);
-    
+
     // También mostrar el toast normal como respaldo
     securityManager.showAlert('Cliente registrado exitosamente. Redirigiendo al login...', 'success');
 }

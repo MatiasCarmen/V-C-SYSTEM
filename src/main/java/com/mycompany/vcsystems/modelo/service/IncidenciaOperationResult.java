@@ -1,9 +1,7 @@
 package com.mycompany.vcsystems.modelo.service;
 
 import com.mycompany.vcsystems.modelo.entidades.Incidencia;
-import org.springframework.stereotype.Service;
 
-@Service
 /**
  * Clase que encapsula el resultado de operaciones sobre incidencias
  * Proporciona información detallada sobre el éxito o fallo de la operación

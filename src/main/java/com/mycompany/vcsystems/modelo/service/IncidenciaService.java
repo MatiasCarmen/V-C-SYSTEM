@@ -49,11 +49,14 @@ public class IncidenciaService {
 
         Incidencia incidencia = incidenciaOpt.get();
         if (incidencia.getTecnico() != null) {
-            return IncidenciaOperationResult.businessError("La incidencia ya tiene un técnico asignado: " + incidencia.getTecnico().getNombre());
+            return IncidenciaOperationResult.businessError(
+                    "La incidencia ya tiene un técnico asignado: " + incidencia.getTecnico().getNombre());
         }
 
-        if (incidencia.getEstado() == Incidencia.Estado.CERRADA || incidencia.getEstado() == Incidencia.Estado.RESUELTA) {
-            return IncidenciaOperationResult.businessError("No se puede asignar técnico a una incidencia en estado: " + incidencia.getEstado());
+        if (incidencia.getEstado() == Incidencia.Estado.CERRADA
+                || incidencia.getEstado() == Incidencia.Estado.RESUELTA) {
+            return IncidenciaOperationResult
+                    .businessError("No se puede asignar técnico a una incidencia en estado: " + incidencia.getEstado());
         }
 
         incidencia.setTecnico(tecnico);
@@ -81,18 +84,21 @@ public class IncidenciaService {
         log.info("Intentando cambiar estado de incidencia {} de {} a {}", idIncidencia, estadoAnterior, nuevoEstado);
 
         if (!isValidStateTransition(estadoAnterior, nuevoEstado)) {
-            return IncidenciaOperationResult.businessError(String.format("Transición de estado inválida: %s -> %s", estadoAnterior, nuevoEstado));
+            return IncidenciaOperationResult.businessError(
+                    String.format("Transición de estado inválida: %s -> %s", estadoAnterior, nuevoEstado));
         }
 
         if (nuevoEstado == Incidencia.Estado.EN_PROCESO && incidencia.getTecnico() == null) {
-            return IncidenciaOperationResult.businessError("No se puede cambiar a EN_PROCESO sin tener un técnico asignado");
+            return IncidenciaOperationResult
+                    .businessError("No se puede cambiar a EN_PROCESO sin tener un técnico asignado");
         }
 
         // Realizar cambio de estado
         incidencia.setEstado(nuevoEstado);
         Incidencia updatedIncidencia = incidenciaRepository.save(incidencia);
         log.info("Estado de incidencia {} cambiado de {} a {}", idIncidencia, estadoAnterior, nuevoEstado);
-        eventPublisher.publishEvent(new IncidenciaStatusChangedEvent(this, updatedIncidencia, estadoAnterior, nuevoEstado));
+        eventPublisher
+                .publishEvent(new IncidenciaStatusChangedEvent(this, updatedIncidencia, estadoAnterior, nuevoEstado));
         return IncidenciaOperationResult.success(updatedIncidencia);
     }
 
@@ -121,15 +127,17 @@ public class IncidenciaService {
 
         return switch (from) {
             case PENDIENTE -> to == Incidencia.Estado.ASIGNADA || to == Incidencia.Estado.CERRADA;
-            case ASIGNADA -> to == Incidencia.Estado.EN_PROCESO || to == Incidencia.Estado.PENDIENTE || to == Incidencia.Estado.CERRADA || to == Incidencia.Estado.RESUELTA;
-            case EN_PROCESO -> to == Incidencia.Estado.RESUELTA || to == Incidencia.Estado.ASIGNADA || to == Incidencia.Estado.CERRADA;
+            case ASIGNADA -> to == Incidencia.Estado.EN_PROCESO || to == Incidencia.Estado.PENDIENTE
+                    || to == Incidencia.Estado.CERRADA || to == Incidencia.Estado.RESUELTA;
+            case EN_PROCESO ->
+                    to == Incidencia.Estado.RESUELTA || to == Incidencia.Estado.ASIGNADA || to == Incidencia.Estado.CERRADA;
             case RESUELTA -> to == Incidencia.Estado.CERRADA || to == Incidencia.Estado.EN_PROCESO;
             case CERRADA -> false; // Las incidencias cerradas no pueden cambiar de estado
         };
     }
 
     public List<Incidencia> listarPorEstado(String estado) {
-        return incidenciaRepository.findByEstado(estado);
+        return incidenciaRepository.findByEstado(Incidencia.Estado.valueOf(estado));
     }
 
     public List<Incidencia> listarPorTecnico(Long idTecnico) {
@@ -158,20 +166,20 @@ public class IncidenciaService {
 
         long totalIncidencias = todasLasIncidencias.size();
         long pendientes = todasLasIncidencias.stream()
-            .filter(i -> i.getEstado() == Incidencia.Estado.PENDIENTE)
-            .count();
+                .filter(i -> i.getEstado() == Incidencia.Estado.PENDIENTE)
+                .count();
         long asignadas = todasLasIncidencias.stream()
-            .filter(i -> i.getEstado() == Incidencia.Estado.ASIGNADA)
-            .count();
+                .filter(i -> i.getEstado() == Incidencia.Estado.ASIGNADA)
+                .count();
         long enProceso = todasLasIncidencias.stream()
-            .filter(i -> i.getEstado() == Incidencia.Estado.EN_PROCESO)
-            .count();
+                .filter(i -> i.getEstado() == Incidencia.Estado.EN_PROCESO)
+                .count();
         long resueltas = todasLasIncidencias.stream()
-            .filter(i -> i.getEstado() == Incidencia.Estado.RESUELTA)
-            .count();
+                .filter(i -> i.getEstado() == Incidencia.Estado.RESUELTA)
+                .count();
         long cerradas = todasLasIncidencias.stream()
-            .filter(i -> i.getEstado() == Incidencia.Estado.CERRADA)
-            .count();
+                .filter(i -> i.getEstado() == Incidencia.Estado.CERRADA)
+                .count();
 
         return new IncidenciaStatistics(totalIncidencias, pendientes, asignadas, enProceso, resueltas, cerradas);
     }
@@ -185,7 +193,7 @@ public class IncidenciaService {
         private final long cerradas;
 
         public IncidenciaStatistics(long total, long pendientes, long asignadas,
-                                  long enProceso, long resueltas, long cerradas) {
+                                    long enProceso, long resueltas, long cerradas) {
             this.total = total;
             this.pendientes = pendientes;
             this.asignadas = asignadas;
@@ -195,11 +203,28 @@ public class IncidenciaService {
         }
 
         // Getters
-        public long getTotal() { return total; }
-        public long getPendientes() { return pendientes; }
-        public long getAsignadas() { return asignadas; }
-        public long getEnProceso() { return enProceso; }
-        public long getResueltas() { return resueltas; }
-        public long getCerradas() { return cerradas; }
+        public long getTotal() {
+            return total;
+        }
+
+        public long getPendientes() {
+            return pendientes;
+        }
+
+        public long getAsignadas() {
+            return asignadas;
+        }
+
+        public long getEnProceso() {
+            return enProceso;
+        }
+
+        public long getResueltas() {
+            return resueltas;
+        }
+
+        public long getCerradas() {
+            return cerradas;
+        }
     }
 }

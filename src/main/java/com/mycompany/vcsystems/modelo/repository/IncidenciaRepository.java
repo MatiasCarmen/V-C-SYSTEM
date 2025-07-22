@@ -16,8 +16,15 @@ import java.util.List;
 public interface IncidenciaRepository extends JpaRepository<Incidencia, Long> {
 
     @Query("SELECT i FROM Incidencia i WHERE i.estado = :estado")
-    List<Incidencia> findByEstado(@Param("estado") String estado);
+    List<Incidencia> findByEstado(@Param("estado") com.mycompany.vcsystems.modelo.entidades.Incidencia.Estado estado);
 
     @Query("SELECT i FROM Incidencia i WHERE i.tecnico.idUsuario = :idTecnico")
     List<Incidencia> findByTecnico_IdUsuario(@Param("idTecnico") Long idTecnico);
+
+    @Query("SELECT i FROM Incidencia i WHERE i.cliente.idCliente = :idCliente")
+    List<Incidencia> findByCliente_IdCliente(@Param("idCliente") Long idCliente);
+
+    @Query("SELECT i FROM Incidencia i WHERE i.prioridad = :prioridad")
+    List<Incidencia> findByPrioridad(
+            @Param("prioridad") com.mycompany.vcsystems.modelo.entidades.Incidencia.Prioridad prioridad);
 }

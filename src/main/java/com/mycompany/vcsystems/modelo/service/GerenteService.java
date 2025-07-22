@@ -1,56 +1,32 @@
 package com.mycompany.vcsystems.modelo.service;
 
-import com.mycompany.vcsystems.modelo.entidades.Usuario;
-import com.mycompany.vcsystems.modelo.entidades.Usuario.Rol;
-import com.mycompany.vcsystems.modelo.repository.UsuarioRepository;
+import com.mycompany.vcsystems.modelo.entidades.Gerente;
+import com.mycompany.vcsystems.modelo.repository.GerenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class GerenteService {
+    private final GerenteRepository gerenteRepository;
 
-    private final UsuarioRepository usuarioRepository;
-
-    public List<Usuario> listarGerentes() {
-        return usuarioRepository.findAll()
-                .stream()
-                .filter(usuario -> usuario.getRol() == Rol.GERENTE)
-                .collect(Collectors.toList());
+    public List<Gerente> findAll() {
+        return gerenteRepository.findAll();
     }
 
-    public Optional<Usuario> obtenerGerentePorId(Long id) {
-        return usuarioRepository.findById(id)
-                .filter(usuario -> usuario.getRol() == Rol.GERENTE);
+    public Optional<Gerente> findById(Long id) {
+        return gerenteRepository.findById(id);
     }
 
-    public Usuario registrarGerente(Usuario usuario) {
-        if (usuario.getRol() == Rol.GERENTE) {
-            return usuarioRepository.save(usuario);
-        } else {
-            throw new IllegalArgumentException("El usuario no tiene rol GERENTE");
-        }
+    public Gerente save(Gerente gerente) {
+        return gerenteRepository.save(gerente);
     }
 
-    public Optional<Usuario> actualizarGerente(Long id, Usuario usuarioActualizado) {
-        return usuarioRepository.findById(id)
-                .filter(u -> u.getRol() == Rol.GERENTE)
-                .map(u -> {
-                    usuarioActualizado.setIdUsuario(id);
-                    return usuarioRepository.save(usuarioActualizado);
-                });
-    }
-
-    public boolean eliminarGerente(Long id) {
-        return usuarioRepository.findById(id)
-                .filter(u -> u.getRol() == Rol.GERENTE)
-                .map(u -> {
-                    usuarioRepository.deleteById(id);
-                    return true;
-                }).orElse(false);
+    public void deleteById(Long id) {
+        gerenteRepository.deleteById(id);
     }
 }

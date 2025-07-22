@@ -32,14 +32,13 @@ public class UsuarioService implements UserDetailsService {
     // private final TecnicoService tecnicoService;
     // private final GerenteService gerenteService;
 
-    private static final Pattern PASSWORD_PATTERN =
-            Pattern.compile("^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$");
 
     /**
      * Orquesta el registro completo de un nuevo usuario y su rol específico.
      *
      * @param request DTO con los datos de registro.
-     * @param rol El rol a asignar al nuevo usuario.
+     * @param rol     El rol a asignar al nuevo usuario.
      * @return El Usuario guardado en la base de datos.
      */
     public Usuario registrarUsuario(RegisterRequest request, Usuario.Rol rol) {
@@ -86,8 +85,10 @@ public class UsuarioService implements UserDetailsService {
 
     /**
      * Valida el formato de la contraseña.
+     *
      * @param password La contraseña a validar.
-     * @throws ValidationException si la contraseña no cumple con el formato requerido.
+     * @throws ValidationException si la contraseña no cumple con el formato
+     *                             requerido.
      */
     private void validarContrasena(String password) {
         if (password == null || !PASSWORD_PATTERN.matcher(password).matches()) {
@@ -98,7 +99,8 @@ public class UsuarioService implements UserDetailsService {
 
     /**
      * Autentica a un usuario para el endpoint de login.
-     * @param correo El correo del usuario.
+     *
+     * @param correo      El correo del usuario.
      * @param rawPassword La contraseña sin encriptar.
      * @return Un Optional con el Usuario si la autenticación es exitosa.
      */
@@ -127,6 +129,14 @@ public class UsuarioService implements UserDetailsService {
         return usuarioRepository.findByCorreo(correo);
     }
 
+    public Optional<Usuario> findById(Long id) {
+        return usuarioRepository.findById(id);
+    }
+
+    public java.util.List<Usuario> findAll() {
+        return usuarioRepository.findAll();
+    }
+
     /**
      * Método principal para la integración con Spring Security.
      */
@@ -138,7 +148,6 @@ public class UsuarioService implements UserDetailsService {
         return new User(
                 usuario.getCorreo(),
                 usuario.getContrasena(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().name()))
-        );
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().name())));
     }
 }
