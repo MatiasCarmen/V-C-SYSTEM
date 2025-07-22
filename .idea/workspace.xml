@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1280b09-70b3-4214-8701-fdaac68ab7b4" name="Changes" comment="login funcional">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/ClienteControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/GerenteControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/TecnicoControlador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/GerenteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Gerente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Incidencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Incidencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Tecnico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Tecnico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/IncidenciaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/IncidenciaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/TecnicoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/TecnicoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/GerenteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/GerenteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaOperationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaOperationResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/TecnicoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/TecnicoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/register.js" afterDir="false" />
-    </list>
+    <list default="true" id="f1280b09-70b3-4214-8701-fdaac68ab7b4" name="Changes" comment="login funcional" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +150,7 @@
       <workItem from="1751955827312" duration="65000" />
       <workItem from="1751955909464" duration="17207000" />
       <workItem from="1752043340541" duration="3526000" />
-      <workItem from="1753220384557" duration="1014000" />
+      <workItem from="1753220384557" duration="1470000" />
     </task>
     <task id="LOCAL-00001" summary="Add initial project structure with JPA entities, repositories, and configuration&#10;&#10;- Created JPA entities: Cliente, Proveedor, Usuario, Incidencia, DiccionarioFallas, SolicitudRepuesto&#10;- Added corresponding repositories for data access&#10;- Configured JPA auditing with JpaAuditingConfig&#10;- Implemented basic application structure with VcsystemsApplication&#10;- Added security configuration and JWT authentication filter&#10;- Included initial HTML templates for login and report views&#10;- Set up .gitignore and .gitattributes for project management">
       <option name="closed" value="true" />
