@@ -11,11 +11,13 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="vcsystems" />
+        <module name="VCSYSTEMS" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="VCSYSTEMS" options="-parameters" />
       <module name="vcsystems" options="-parameters" />
     </option>
   </component>

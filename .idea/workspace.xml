@@ -5,17 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1280b09-70b3-4214-8701-fdaac68ab7b4" name="Changes" comment="login funcional">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/dto/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/dto/RegisterTecnicoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/ClienteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/mycompany/vcsystems/.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/ControladorAut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/ControladorAut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/vcsystems_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/vcsystems_db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pages/registro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/pages/registro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mycompany/vcsystems/IncidenciaServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mycompany/vcsystems/IncidenciaServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/api/controlador/NotificacionControlador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Gerente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Notificacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/entidades/Tecnico.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/NotificacionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/repository/TecnicoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/GerenteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/TecnicoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaOperationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/IncidenciaOperationResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/NotificacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/service/NotificacionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +40,12 @@
     &quot;assignee&quot;: &quot;MatiasCarmen&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MatiasCarmen/ultimate.git&quot;,
-    &quot;accountId&quot;: &quot;9aca7390-dba4-4d6d-a85a-b3d034c6b677&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MatiasCarmen/V-C-SYSTEM.git",
+    "accountId": "44f397b8-204c-462f-9d03-34bf0039b7e8"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -52,7 +54,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -62,44 +64,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request. | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request. | Registrar gerente con datos proporcionados.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in vcsystems.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.gerente.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.login.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.reportes.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.solicitudes.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.tecnico.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.VcsystemsApplication (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.VcsystemsApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.VcsystemsApplicationl.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request. | #1.executor": "Run",
+    "HTTP Request. | Registrar gerente con datos proporcionados.executor": "Run",
+    "JUnit.All in vcsystems.executor": "Run",
+    "JavaScript Debug.gerente.html.executor": "Run",
+    "JavaScript Debug.login.html (1).executor": "Run",
+    "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.reportes.html.executor": "Run",
+    "JavaScript Debug.solicitudes.html.executor": "Run",
+    "JavaScript Debug.tecnico.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.VcsystemsApplication (1).executor": "Run",
+    "Spring Boot.VcsystemsApplication.executor": "Run",
+    "Spring Boot.VcsystemsApplicationl.executor": "Run",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/suxel/Music/ANALISIS/V-C-SYSTEM",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.qodana",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.VcsystemsApplicationl">
+}]]></component>
+  <component name="RunManager">
     <configuration name=" | Registrar gerente con datos proporcionados" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/src/test/java/com/mycompany/vcsystems/.http" executionIdentifier="Registrar gerente con datos proporcionados" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -123,31 +126,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="HTTP Request. | #1" />
-      <item itemvalue="HTTP Request. | Registrar gerente con datos proporcionados" />
-      <item itemvalue="JavaScript Debug.gerente.html" />
-      <item itemvalue="JavaScript Debug.reportes.html" />
-      <item itemvalue="JavaScript Debug.login.html" />
-      <item itemvalue="Spring Boot.VcsystemsApplicationl" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="HTTP Request. | Registrar gerente con datos proporcionados" />
-        <item itemvalue="HTTP Request. | #1" />
-        <item itemvalue="JavaScript Debug.login.html" />
-        <item itemvalue="JavaScript Debug.gerente.html" />
-        <item itemvalue="JavaScript Debug.reportes.html" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="StructureViewState">
     <option name="selectedTab" value="Logical" />
@@ -234,6 +212,17 @@
     <MESSAGE value="80%" />
     <MESSAGE value="login funcional" />
     <option name="LAST_COMMIT_MESSAGE" value="login funcional" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/mycompany/vcsystems/modelo/events/IncidenciaEventListener.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
